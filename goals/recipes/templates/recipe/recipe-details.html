@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}My Recipes{% endblock title %}
+
+{% block content %}
+    <div class="container" id="recipe-detail">
+        <h1 class="text-center">{{ recipe.name }}</h1>
+
+        <div class="row">
+            <div class="col col-lg-3 mr-2">
+                <div class="ingredients mb-3" style="border: solid 2px;">
+                    <h4 class="text-center">Ingredients</h4>
+                    <br>
+                    <p class="text-center">{{ recipe.ingredients }}</p>
+                </div>
+
+                <div class="servings" style="border: solid 2px;">
+                    <h5 class="text-center">Servings</h5>
+                    <p class="text-center">{{ recipe.servings }}</p>
+                </div>
+                <div class="servings" style="border-right-style: solid; border-bottom-style: solid;
+                border-left-style: solid; border-width: 2px;">
+                    <h5 class="text-center">Time</h5>
+                    <p class="text-center">{{ recipe.time }}</p>
+                </div>
+
+            </div>
+            <div class="col" style="border: solid 2px;">
+                <h4 class="text-center">Method</h4>
+
+                <br>
+                {{ recipe.method }}
+            </div>
+        </div>
+        <br>
+        <br>
+    </div>
+{% endblock content %}

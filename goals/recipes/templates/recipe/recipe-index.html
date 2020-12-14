@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}My Recipes{% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+        <h2 class="text-center">My Recipes</h2>
+
+        <div class="col-md-10 offset-1">
+            <a href="#" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">Add new recipe</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="{% url 'recipes:create' %}">Create Recipe</a>
+                <a class="dropdown-item" href="{% url 'recipes:new-video' %}">Add YouTube Video</a>
+                <a class="dropdown-item" href="{% url 'recipes:new-website' %}">Add Website URL</a>
+            </div>
+        </div>
+
+        {# INTERNAL RECIPE SECTION #}
+        <div class="row mt-5">
+            <div class="col-md-10 offset-1">
+                <h2>Love Recipes</h2>
+                <div class="recipe-grid">
+                    {% for post in posts %}
+                        <div class="media">
+                            <a href="{% url 'recipes:detail' post.id %}" {% if post.thumbnail %} style="background-image:url({{ post.thumbnail.url }})"{% endif %}></a>
+                            <div class="media-title">{{ post.name }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        {# YOUTUBE VIDEO SECTION #}
+        <div class="row mt-5">
+            <div class="col-md-10 offset-1">
+                <h2>YouTube Videos</h2>
+                <div class="recipe-grid">
+                    {% for video in videos %}
+                        <div class="media">
+                            <iframe id="video" class="embed-responsive-item" src="{{ video.url }}"
+                                    allowfullscreen></iframe>
+                            <div class="media-title video-name">{{ video.name }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        {# INTERNAL RECIPE SECTION #}
+        <div class="row mt-5">
+            <div class="col-md-10 offset-1">
+                <h2>Other Websites</h2>
+                <div class="recipe-grid">
+                    {% for link in links %}
+                        <div class="media">
+                            <a href="{{ link.url }}" target="_blank"
+                               {% if link.thumbnail %}style="background-image:url({{ link.thumbnail.url }})"{% endif %}></a>
+                            <div class="media-title">{{ link.name }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}
